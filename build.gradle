@@ -1,0 +1,72 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+}
+
+group = 'otaviof.github.io'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+
+	maven { url("http://repo1.maven.org/maven2/") }
+	maven { url("http://packages.confluent.io/maven/") }
+}
+
+dependencies {
+	compileOnly("org.projectlombok:lombok:${lombokVersion}")
+	testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+	annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+	testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+	compile(
+		"org.apache.avro:avro:${avroVersion}",
+		"io.confluent:kafka-avro-serializer:${confluentVersion}",
+		"io.confluent:kafka-streams-avro-serde:${confluentVersion}")
+
+	compile(
+		"org.apache.kafka:kafka-streams:${kafkaStreamsVersion}",
+		"org.apache.kafka:kafka-clients:${kafkaStreamsVersion}")
+
+	compile("org.awaitility:awaitility:${awaitilityVersion}")
+
+	compile(
+		"io.opentracing.contrib:opentracing-spring-cloud-starter:${otSpringStarterVersion}",
+		"io.opentracing.contrib:opentracing-spring-tracer-configuration-starter:${otSpringTracerConfigVersion}")
+
+	compile(
+		"io.opentracing.contrib:opentracing-kafka-client:${otKafkaVersion}",
+        "io.opentracing.contrib:opentracing-kafka-streams:${otKafkaVersion}")
+
+	compile(
+		"io.opentracing.contrib:opentracing-spring-jaeger-starter:${otSpringJaegerVersion}",
+		"io.jaegertracing:jaeger-core:${jaegerCoreVersion}")
+
+	compile(
+		"io.micrometer:micrometer-registry-prometheus:${micrometerVersion}",
+		"io.micrometer:micrometer-core:${micrometerVersion}")
+
+	compile(
+			"org.springframework.boot:spring-boot-starter-web:${springVersion}",
+			"org.springframework.boot:spring-boot-starter-logging:${springVersion}",
+			"org.springframework.boot:spring-boot-configuration-processor:${springVersion}",
+			"org.springframework.boot:spring-boot-starter-actuator:${springVersion}",
+			"org.springframework.boot:spring-boot-starter-validation:${springVersion}")
+
+	implementation('org.springframework.boot:spring-boot-starter')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'junit', module: 'junit'
+	}
+
+	compile("org.junit.jupiter:junit-jupiter-api")
+
+	testCompile("org.junit.jupiter:junit-jupiter-params")
+	testCompile("org.junit.platform:junit-platform-runner")
+
+	testRuntime("org.junit.jupiter:junit-jupiter-engine")
+}

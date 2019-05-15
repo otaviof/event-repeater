@@ -1,0 +1,24 @@
+---
+spring:
+  application:
+    name: event-repeater
+logging:
+  level:
+    io.github.otaviof: TRACE
+
+opentracing:
+  jaeger:
+    enabled: true
+
+eventrepeater:
+  kafka:
+    schemaRegistryUrl: http://schemaregistry.localtest.me:8681
+    brokers: kafka.localtest.me:9092
+  repeaters:
+    - from: kafka_request_topic
+      to: kafka_response_topic
+      delayMs: 15
+    - from: kafka_get_request_topic
+      to: kafka_get_response_topic
+      delayMs: 5
+

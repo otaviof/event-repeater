@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: event-repeater
+server:
+  port: 8882
+logging:
+  level:
+    org.apache.kafka.clients.consumer.ConsumerConfig: WARN
+    org.apache.kafka.clients.producer.ProducerConfig: WARN
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+    prometheus:
+      enabled:  true
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  health:
+    defaults:
+      enabled: false
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+

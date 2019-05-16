@@ -16,7 +16,7 @@ public class StreamProcessor implements Processor<String, GenericRecord> {
 
     private ProcessorContext context;
 
-    public StreamProcessor(AvroProducer producer, int delayMs) {
+    StreamProcessor(AvroProducer producer, int delayMs) {
         this.producer = producer;
         this.delayMs = delayMs;
     }

@@ -3,7 +3,6 @@ package otaviof.github.io.eventrepeater.kafka;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerializer;
 import io.opentracing.Tracer;
-import io.opentracing.contrib.kafka.TracingKafkaProducer;
 import io.opentracing.contrib.kafka.TracingProducerInterceptor;
 import java.util.Map;
 import java.util.Properties;
@@ -20,18 +19,18 @@ import otaviof.github.io.eventrepeater.config.RepeaterConfig;
 
 @Slf4j
 public class AvroProducer {
+    private final Tracer tracer;
     private final KafkaConfig kafkaConfig;
     private final RepeaterConfig repeaterConfig;
 
-    private final TracingKafkaProducer<String, GenericRecord> tracingProducer;
     private final KafkaProducer<String, GenericRecord> producer;
 
     public AvroProducer(Tracer tracer, KafkaConfig kafkaConfig, RepeaterConfig repeaterConfig) {
+        this.tracer = tracer;
         this.kafkaConfig = kafkaConfig;
         this.repeaterConfig = repeaterConfig;
 
-        this.producer = new KafkaProducer<String, GenericRecord>(producerProperties());
-        this.tracingProducer = new TracingKafkaProducer<>(producer, tracer);
+        this.producer = new KafkaProducer<>(producerProperties());
     }
 
     private Properties producerProperties() {
@@ -50,7 +49,7 @@ public class AvroProducer {
         return p;
     }
 
-    public void send(String k, GenericRecord v, Map<String, String> headers) throws
+    void send(String k, GenericRecord v, Map<String, String> headers) throws
             ExecutionException, InterruptedException {
         var record = new ProducerRecord<>(repeaterConfig.getTo(), k, v);
 
@@ -58,7 +57,6 @@ public class AvroProducer {
 
         headers.forEach((key, value) -> record.headers().add(key, value.getBytes()));
 
-        // tracingProducer.send(record).get();
         producer.send(record).get();
     }
 }

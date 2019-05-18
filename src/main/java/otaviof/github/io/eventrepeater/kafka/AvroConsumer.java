@@ -27,10 +27,7 @@ public class AvroConsumer implements Runnable {
 
     private KafkaStreams streams;
 
-    public AvroConsumer(
-            Tracer tracer,
-            KafkaConfig kafkaConfig,
-            RepeaterConfig repeaterConfig,
+    public AvroConsumer(Tracer tracer, KafkaConfig kafkaConfig, RepeaterConfig repeaterConfig,
             AvroProducer producer) {
         this.tracer = tracer;
         this.kafkaConfig = kafkaConfig;
@@ -68,7 +65,7 @@ public class AvroConsumer implements Runnable {
 
         topology.addSource("SOURCE", repeaterConfig.getFrom())
                 .addProcessor("StreamProcessor",
-                        () -> new StreamProcessor(producer, repeaterConfig.getDelayMs()),
+                        () -> new StreamProcessor(tracer, producer, repeaterConfig.getDelayMs()),
                         "SOURCE");
 
         streams = new KafkaStreams(topology, consumerProperties(), supplier);

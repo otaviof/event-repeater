@@ -12,7 +12,7 @@ import otaviof.github.io.eventrepeater.kafka.AvroProducer;
 @Slf4j
 class Repeater {
     Repeater(Tracer tracer, KafkaConfig kafkaConfig, RepeaterConfig repeaterConfig) {
-        var producer = new AvroProducer(tracer, kafkaConfig, repeaterConfig);
+        var producer = new AvroProducer(kafkaConfig, repeaterConfig);
         var consumer = new AvroConsumer(tracer, kafkaConfig, repeaterConfig, producer);
         var consumerThread = new Thread(consumer);
 

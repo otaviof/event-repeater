@@ -2,7 +2,6 @@ package otaviof.github.io.eventrepeater.kafka;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerializer;
-import io.opentracing.Tracer;
 import io.opentracing.contrib.kafka.TracingProducerInterceptor;
 import java.util.Map;
 import java.util.Properties;
@@ -19,14 +18,12 @@ import otaviof.github.io.eventrepeater.config.RepeaterConfig;
 
 @Slf4j
 public class AvroProducer {
-    private final Tracer tracer;
     private final KafkaConfig kafkaConfig;
     private final RepeaterConfig repeaterConfig;
 
     private final KafkaProducer<String, GenericRecord> producer;
 
-    public AvroProducer(Tracer tracer, KafkaConfig kafkaConfig, RepeaterConfig repeaterConfig) {
-        this.tracer = tracer;
+    public AvroProducer(KafkaConfig kafkaConfig, RepeaterConfig repeaterConfig) {
         this.kafkaConfig = kafkaConfig;
         this.repeaterConfig = repeaterConfig;
 

@@ -4,7 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
-group = 'otaviof.github.io'
+group = 'io.github.otaviof'
 sourceCompatibility = '11'
 
 repositories {
@@ -70,6 +70,17 @@ dependencies {
 
 	testRuntime("org.junit.jupiter:junit-jupiter-engine")
 }
+
+bootJar {
+	manifest {
+		attributes('Implementation-Title': project.name,
+				'Implementation-Version': project.version)
+	}
+	version = null
+	mainClassName = "io.github.otaviof.eventrepeater.EventRepeater"
+}
+
+assemble.dependsOn(bootJar)
 
 bootRun {
 	systemProperty('spring.config.location', 'file:./src/main/resources/,file:./src/test/resources/')

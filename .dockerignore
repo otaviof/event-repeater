@@ -1,0 +1,16 @@
+*.iml
+*.md
+*/**/*.jar
+.DS_Store
+.ci*
+.classpath
+.data
+.env
+.git*
+.idea
+.project
+.settings
+.travis*
+.vscode
+build/
+src/test

@@ -1,7 +1,9 @@
-package otaviof.github.io.eventrepeater.kafka;
+package io.github.otaviof.eventrepeater.kafka;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerializer;
+import io.github.otaviof.eventrepeater.config.KafkaConfig;
+import io.github.otaviof.eventrepeater.config.RepeaterConfig;
 import io.opentracing.contrib.kafka.TracingProducerInterceptor;
 import java.util.Map;
 import java.util.Properties;
@@ -13,8 +15,6 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
-import otaviof.github.io.eventrepeater.config.KafkaConfig;
-import otaviof.github.io.eventrepeater.config.RepeaterConfig;
 
 @Slf4j
 public class AvroProducer {

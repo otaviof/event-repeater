@@ -1,9 +1,11 @@
-package otaviof.github.io.eventrepeater.kafka;
+package io.github.otaviof.eventrepeater.kafka;
 
 import static org.apache.kafka.streams.KafkaStreams.State.RUNNING;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde;
+import io.github.otaviof.eventrepeater.config.KafkaConfig;
+import io.github.otaviof.eventrepeater.config.RepeaterConfig;
 import io.opentracing.Tracer;
 import io.opentracing.contrib.kafka.streams.TracingKafkaClientSupplier;
 import java.util.Properties;
@@ -15,8 +17,6 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
-import otaviof.github.io.eventrepeater.config.KafkaConfig;
-import otaviof.github.io.eventrepeater.config.RepeaterConfig;
 
 @Slf4j
 public class AvroConsumer implements Runnable {

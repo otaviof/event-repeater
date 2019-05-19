@@ -1,13 +1,13 @@
-package otaviof.github.io.eventrepeater.repeater;
+package io.github.otaviof.eventrepeater.repeater;
 
+import io.github.otaviof.eventrepeater.config.Config;
+import io.github.otaviof.eventrepeater.config.RepeaterConfig;
 import io.opentracing.Tracer;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
-import otaviof.github.io.eventrepeater.config.Config;
-import otaviof.github.io.eventrepeater.config.RepeaterConfig;
 
 @EnableAutoConfiguration
 @Service

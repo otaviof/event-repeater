@@ -1,4 +1,4 @@
-package otaviof.github.io.eventrepeater.kafka;
+package io.github.otaviof.eventrepeater.kafka;
 
 import io.opentracing.Span;
 import io.opentracing.Tracer;

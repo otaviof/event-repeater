@@ -1,13 +1,13 @@
-package otaviof.github.io.eventrepeater.repeater;
+package io.github.otaviof.eventrepeater.repeater;
 
+import io.github.otaviof.eventrepeater.config.KafkaConfig;
+import io.github.otaviof.eventrepeater.config.RepeaterConfig;
+import io.github.otaviof.eventrepeater.kafka.AvroConsumer;
+import io.github.otaviof.eventrepeater.kafka.AvroProducer;
 import io.opentracing.Tracer;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.awaitility.Awaitility;
-import otaviof.github.io.eventrepeater.config.KafkaConfig;
-import otaviof.github.io.eventrepeater.config.RepeaterConfig;
-import otaviof.github.io.eventrepeater.kafka.AvroConsumer;
-import otaviof.github.io.eventrepeater.kafka.AvroProducer;
 
 @Slf4j
 class Repeater {

@@ -1,4 +1,4 @@
-package otaviof.github.io.eventrepeater.boot;
+package io.github.otaviof.eventrepeater.boot;
 
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.reporters.InMemoryReporter;

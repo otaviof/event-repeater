@@ -1,4 +1,4 @@
-package otaviof.github.io.eventrepeater.config;
+package io.github.otaviof.eventrepeater.config;
 
 import java.util.List;
 import javax.validation.constraints.NotEmpty;
